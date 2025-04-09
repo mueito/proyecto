@@ -31,7 +31,7 @@ $result = mysqli_query($connect, $sql);
     <nav>
         <h2>Almacén SENA</h2>
         <ul>
-        </li> <a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+        </li> <a href="admin.php"><i class="fas fa-home"></i> Inicio</a></li>
         <li> <a href="funcionarios/1registrofuncionario.php"><i class=" fas fa-laptop"></i> Registro de Funcionarios</a></li>
         <li><a href="3prestamos.php"><i class="fas fa-hand-holding"></i> Préstamos</a></li>
         <li><a href="4devolucion.php"><i class="fas fa-laptop"></i> Devolución</a></li>

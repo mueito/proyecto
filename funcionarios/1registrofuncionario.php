@@ -3,7 +3,9 @@ include '../conexion.php';
 
 $result = mysqli_query($connect, "SELECT * FROM instructores");
 ?>
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,14 +30,18 @@ $result = mysqli_query($connect, "SELECT * FROM instructores");
     <nav>
         <h2>Almacén SENA</h2>
         <ul>
-            <li><a href="../admin.php"  href="../almacenista.php"><i class="fas fa-home"></i> Inicio</a></li>
+            <li>
+                <a href="<?php echo ($_SESSION['rol'] === 'administrador') ? '../admin.php' : '../almacenista.php'; ?>">
+                    <i class="fas fa-home"></i> Inicio
+                </a>
+            </li>
 
             <li><a href="1registrofuncionario.php"><i class="fas fa-laptop"></i> Registro de Funcionarios</a></li>
             <li><a href="../prestamos/3prestamos.php"><i class="fas fa-hand-holding"></i> Préstamos</a></li>
             <li><a href="../devoluciones/4devolucion.php"><i class="fas fa-laptop"></i> Devolución</a></li>
             <li><a href="../insumos/2insumos.php"><i class="fas fa-box-open"></i> Insumos</a></li>
             <li><a href="../reportes.php"><i class="fas fa-chart-bar"></i> Reportes</a></li>
-           
+
         </ul>
     </nav>
 
@@ -91,7 +97,7 @@ $result = mysqli_query($connect, "SELECT * FROM instructores");
 
         <div class="table-responsive report-list">
             <table id="miTabla1" class="display">
-          
+
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -116,15 +122,15 @@ $result = mysqli_query($connect, "SELECT * FROM instructores");
                             <td><?php echo htmlspecialchars($row['telefono']); ?> </td>
                             <td><?php echo htmlspecialchars($row['estado']); ?> </td>
                             <td class=" text-center">
-                <a href="editar2.php?id=<?php echo $row['id_instructores']; ?>"
-                    class="btn btn-success btn-sm">Editar</a>
-                <a href="eliminar.php?id=<?php echo $row['id_instructores']; ?>"
-                    class="btn btn-danger btn-sm"
-                    onclick="return confirm('¿Estás seguro de eliminar este registro?');">Eliminar</a>
-                </td>
-                </tr>
-            <?php } ?>
-            </tbody>
+                                <a href="editar2.php?id=<?php echo $row['id_instructores']; ?>"
+                                    class="btn btn-success btn-sm">Editar</a>
+                                <a href="eliminar.php?id=<?php echo $row['id_instructores']; ?>"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Estás seguro de eliminar este registro?');">Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
             </table>
         </div>
     </main>

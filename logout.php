@@ -2,20 +2,23 @@
 session_start();
 include('conexion.php');
 
-// Solo registramos hora de salida si es un almacenista
-if (isset($_SESSION['usuario']) && $_SESSION['rol'] === 'almacenista') {
+if (isset($_SESSION['usuario']) && isset($_SESSION['rol'])) {
     $usuario = $_SESSION['usuario'];
-    $hora_salida = date('Y-m-d H:i:s');
+    $rol = $_SESSION['rol'];
 
-    // Actualiza solo la fila del almacenista actual
-    $stmt = $connect->prepare("UPDATE almacenista SET hora_salida = ? WHERE correo = ?");
-    $stmt->bind_param("ss", $hora_salida, $usuario);
-    $stmt->execute();
+    // Si es almacenista, registra la hora de salida
+    if ($rol === 'almacenista') {
+        $hora_salida = date('Y-m-d H:i:s');
+        $stmt = $connect->prepare("UPDATE almacenista SET hora_salida = ? WHERE correo = ?");
+        $stmt->bind_param("ss", $hora_salida, $usuario);
+        $stmt->execute();
+    }
+
+    // Aquí puedes agregar otros roles en el futuro si quieres registrar otras salidas
 }
 
-// Cerramos sesión para cualquier rol
-session_unset();  // Borra variables
-session_destroy();  // Cierra sesión
+// Cierra sesión para cualquier rol
+session_unset();
+session_destroy();
 header("Location: index.php");
 exit;
-?>
