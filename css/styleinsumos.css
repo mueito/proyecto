@@ -15,18 +15,21 @@ header {
     padding: 20px;
     text-align: center;
     font-size: 24px;
+    width: 100%;
 }
 
-nav {
-   
 
-   
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
     background: #11171ddb;
     padding: 20px;
     width: 250px;
     height: 100vh;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
+
 
 nav h2 {
     color: white;
@@ -56,12 +59,14 @@ nav ul li a {
 nav ul li a:hover {
     background: #003366;
 }
-
-.main-content {
-    flex: 1;
-    padding: 20px;
+nav ul li a.active {
+    background: #003366;
 }
-
+.main-content {
+    margin-left: 270px; /* Espacio para el menú */
+    padding: 20px;
+    flex: 1;
+}
 .insumos-form,
 .insumos-list {
     background: white;
@@ -100,48 +105,20 @@ button:hover {
     background: #0a5a00;
 }
 
-table {
+.table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-table,
-th,
-td {
+.table th,
+.table td {
     border: 1px solid #ddd;
-}
-
-th,
-td {
     padding: 10px;
     text-align: left;
 }
 
-th {
+.table th {
     background-color: #f2f2f2;
 }
 
-button.edit {
-    background-color: #ffc107;
-    color: #000;
-}
-
-button.delete {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-button.edit,
-button.delete {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button.edit:hover,
-button.delete:hover {
-    opacity: 0.8;
-}

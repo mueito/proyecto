@@ -5,13 +5,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_equipo =$_POST¨['id_equipos'];
     $marca = $_POST['marca'];
     $serie = $_POST['serie'];
-    $stock = $_POST['stock'];
-    $estado = $_POST['estado'];
+   $estado = $_POST['estado'];
 
-    $sql = "INSERT INTO equipos (id_equipos, marca, serie, stock, estado) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO equipos (id_equipos, marca, serie, estado) VALUES (?, ?, ?, ?)";
     $stmt = $connect->prepare($sql);
-    $stmt->execute([$id_equipos, $marca, $serie, $stock, $estado]);
+    $stmt->execute([$id_equipos, $marca, $serie,  $estado]);
 
-    header("Location: 2insumos.php");
+    header(header: "Location: 2insumos.php");
 }
 ?>
